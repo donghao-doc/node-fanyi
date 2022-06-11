@@ -5,14 +5,15 @@
   "bin": {
     "fanyi": "dist/cli.js"
   },
-  "files": ["dist/**/*.js"],
+  "files": [
+    "dist/**/*.js"
+  ],
   "scripts": {
     "start": "ts-node-dev src/cli.ts"
   },
   "license": "MIT",
   "dependencies": {
     "commander": "3.0.2",
-    "inquirer": "^8.2.4",
     "md5": "^2.3.0"
   },
   "devDependencies": {
