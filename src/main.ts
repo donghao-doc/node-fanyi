@@ -1,7 +1,7 @@
 const https = require('https');
 const querystring = require('querystring');
 const md5 = require('md5');
-const { appid, secret } = require('./private.ts');
+const { appid, secret } = require('./private');
 
 export const translate = (word: string) => {
   let isEnglish = false;
@@ -29,7 +29,6 @@ export const translate = (word: string) => {
     res.on('end', () => {
       const content = Buffer.concat(chunks).toString()
       const result = JSON.parse(content)
-      console.log(result)
       if (result.error_code) {
         console.error(result.error_msg)
         process.exit(2)

@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 const program = require('commander');
 const pkg = require('../package.json');
-const { translate } = require('./main.ts');
+const { translate } = require('./main');
 
 program
   .version(pkg.version)
