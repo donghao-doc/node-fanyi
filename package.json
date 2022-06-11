@@ -1,0 +1,16 @@
+{
+  "name": "node-fanyi",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/main.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "3.0.2",
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.41"
+  }
+}
