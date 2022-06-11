@@ -4,10 +4,15 @@ const md5 = require('md5');
 const { appid, secret } = require('./private.ts');
 
 export const translate = (word: string) => {
+  let isEnglish = false;
+  if (/[a-zA-Z]/.test(word[0])) isEnglish = true;
   const salt = Math.random();
   const sign = md5(`${appid}${word}${salt}${secret}`);
   const query: string = querystring.stringify({ 
-    q: word, from: 'en', to:'zh', appid, salt, sign
+    q: word, 
+    from: isEnglish ? 'en' : 'zh', 
+    to: isEnglish ? 'zh' : 'en', 
+    appid, salt, sign
   });
   const options = {
     hostname: 'api.fanyi.baidu.com',
@@ -24,11 +29,14 @@ export const translate = (word: string) => {
     res.on('end', () => {
       const content = Buffer.concat(chunks).toString()
       const result = JSON.parse(content)
+      console.log(result)
       if (result.error_code) {
         console.error(result.error_msg)
         process.exit(2)
       } else {
-        console.log(result.trans_result[0].dst)
+        result.trans_result.map(item => {
+          console.log(item.dst)
+        })
         process.exit(0)
       }
     })
